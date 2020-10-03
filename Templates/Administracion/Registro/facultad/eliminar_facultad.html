@@ -1,0 +1,21 @@
+{% extends 'Administracion/Registro/facultad/form_facultad.html' %}
+{% block formTitle %}
+Eliminar Facultad
+{% endblock formTitle %}
+
+{% block formAction %}
+{% url 'administracion:registro:eliminar_facultad' object.id %}
+{% endblock formAction %}
+
+{% block formBody %}
+<div class="card-header" style="text-align: center; font-size: 2.5em;">
+    <i class="fa fa-trash"></i>
+  <h3> ¿Desea Eliminar la Facultad?</h3>
+  <h3> {{object.nombre_corto}}</h3>
+</div>
+<div class="card-body" style="text-align: center;">
+  <button type="submit" class="btn btn-primary">Eliminar</button>
+  <a href="" class="btn btn-primary"
+    >Cancelar</a>
+</div>
+{% endblock formBody %}

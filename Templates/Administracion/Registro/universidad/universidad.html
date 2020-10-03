@@ -1,0 +1,105 @@
+{% extends 'Administracion/Registro/registro.html' %}
+{% load static %}
+{% block title %}Registro - Universidad{% endblock title %}
+
+{% block content %}
+   
+<div class="container">
+    <div class="row text-white">
+        <div class="col-md-12">
+            <div class="card bg-dark">
+                <div class="card-header">
+                    <strong class="card-title">Datos de Universidades</strong>
+                    <button type="button" id="btnNew" class="btn btn-primary btn-sm float-right text-white" value="{% url 'administracion:registro:crear_universidad' %}"><i class="fa fa-plus"></i>&nbsp; Agregar Universidad</button>
+                </div>
+                <div class="card-body">
+                    {{perms.universidad}}
+                    {% if universidad %}
+                    <div class="table-responsive">
+                        <table id="bootstrap-data-table" class="table">
+                            <thead class="table-bordered" style="width: 100%;">
+                                <tr>
+                                    <th>id</th>
+                                    <th>Nombre</th>
+                                    <th>Nombre Corto</th>
+                                    <th>Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-bordered"  style="width: 100%;">
+                            {% for uni in universidad %}
+                                <tr>
+                                    <td>{{ uni.id }}</td>
+                                    <td>{{ uni.nombre }}</td>
+                                    <td>{{ uni.nombre_corto }}</td>
+                                    <td style="max-width: 120px; min-width: 100px;">
+                                        <div class=" ml-auto">
+                                    <button type="button" class="btn btn-primary mb-1 col-12" id="btnEdit" value="{% url 'administracion:registro:editar_universidad' uni.id %}"><i class="fa fa-edit"></i>&nbsp; Editar</button>
+                                    <button type="button" id="btnDel" value="{% url 'administracion:registro:eliminar_universidad' uni.id %}" class="btn btn-primary btn-sm col-12" ><i class="fa fa-trash-o"></i>&nbsp; Eliminar</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-8 ml-auto mr-auto">
+                                <div class="dataTables_paginate paging_simple_numbers" id="bootstrap-data-table_paginate">
+                                    <ul class="pagination">
+                                        {% if page_obj.has_previous %}
+                                        <li class="paginate_button page-item previous" id="bootstrap-data-table_previous">
+                                            <a href="?page=1" aria-controls="bootstrap-data-table" data-dt-idx="0" tabindex="0" class="page-link bg-dark btn-primary">Inicio</a>
+                                        </li>
+                                        <li class="paginate_button page-item previous" id="bootstrap-data-table_previous">
+                                            <a href="?page={{ page_obj.previus_page_number }}" aria-controls="bootstrap-data-table" data-dt-idx="0" tabindex="0" class="page-link bg-dark btn-primary">Anterior</a>
+                                        </li>
+                                        {% endif %}
+                                        <div class="text-align-center ml-4 mr-4">
+                                            <div class="dataTables_info" id="bootstrap-data-table_info" role="status" aria-live="polite">
+                                                <span class="current">
+                                                Mostrando {{page_obj.number}} paginas de {{page_obj.paginator.num_pages}}.
+                                              </span>
+                                            </div>
+                                        </div>
+                                        {% if page_obj.has_next %}
+                                        <li class="paginate_button page-item next" id="bootstrap-data-table_next">
+                                            <a href="?page={{ page_obj.next_page_number }}" aria-controls="bootstrap-data-table" data-dt-idx="7" tabindex="0" class="page-link bg-dark btn-primary">Siguiente</a>
+                                        </li>
+                                        <li class="paginate_button page-item next" id="bootstrap-data-table_next">
+                                            <a href="?page={{ page_obj.paginator.num_pages }}" aria-controls="bootstrap-data-table" data-dt-idx="7" tabindex="0" class="page-link bg-dark btn-primary">Ultimo</a>
+                                        </li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="row text-center"></div>
+                        <h3>No existen Universidades registradas</h3>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}
+{% block extraJS %}
+    <script>
+       
+        $("#btnNew").click(function (event) {
+            $("#Modals").load($("#btnNew").val()).modal('show');
+        });
+        $("[id*=btnEdit]").click(function (event) {
+                $("#Modals").load($(this).val()).modal('show');
+            });
+            $("[id*=btnDel]").click(function (event) {
+                $("#Modals").load($(this).val()).modal('show');
+            });
+    </script> 
+    			
+{% endblock extraJS %}
+    

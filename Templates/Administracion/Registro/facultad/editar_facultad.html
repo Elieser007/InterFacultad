@@ -1,0 +1,8 @@
+{% extends 'Administracion/Registro/facultad/form_facultad.html' %}
+{% block formTitle %}
+    Editar facultad
+{% endblock formTitle %}
+
+{% block formAction %}
+{% url 'administracion:registro:editar_facultad' object.id %}
+{% endblock formAction %}

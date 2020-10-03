@@ -1,0 +1,8 @@
+{% extends 'Administracion/Registro/universidad/form_universidad.html' %}
+{% block formTitle %}
+    Editar Universidad
+{% endblock formTitle %}
+
+{% block formAction %}
+{% url 'administracion:registro:editar_universidad' object.id %}
+{% endblock formAction %}

@@ -1,0 +1,40 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}Administración{% endblock title %}  
+
+
+{% block extrahead %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+{% endblock extrahead %}
+    
+{% block headType %}
+    position:inherit;
+{% endblock headType %}
+       
+{% block links %}
+<li class="active"><a href="{% url 'administracion' %}" class="nav-link lnk">Inicio</a></li>
+<li><a href="{% url 'administracion:registro' %}" class="nav-link text-white lnk">Administrar Datos</a></li>
+<li><a href="" class="nav-link text-white lnk">Eventos</a></li>
+<li><a href="" class="nav-link text-white lnk">Blog</a></li>
+<li><a href="" class="nav-link text-white lnk">Noticias</a></li>
+{% endblock links %}
+
+{% block content %}
+
+<H1>administracion</H1>
+
+    
+{% endblock content %}
+
+{% block btn-login %}
+{% if user %}
+<a href="{% url 'logout' %}" class="btn btn-primary py-3 px-4 mr-3 lnk">Cerrar Sesión</a>
+{% endif %}
+{% endblock btn-login %}
+
+{% block footer_anc %}
+    footer
+{% endblock footer_anc %}
+    
+    
+    

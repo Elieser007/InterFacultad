@@ -1,0 +1,33 @@
+<div class="col-lg-5 col-sm-8  ml-auto mr-auto text-white" style="z-index:999;">
+    <div class="card bg-dark ">
+        <div class="card-header">
+            <strong> 
+            {% block formTitle %}
+      
+            {% endblock formTitle %}
+            </strong>
+            <a href="" class=" close float-right text-white">×</a>
+        </div>
+        
+        <div class="card-body card-block">
+            <form action="{% block formAction %} {% endblock formAction %}" method="post">
+                
+                {% csrf_token %}
+                
+                
+                
+                {% block formBody %}
+                <div class="m-5">
+                    {{form.as_p}}
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm float-left p-2"><i class="fa fa-save"></i>&nbsp; Guardar</button>
+                <a href="">
+                    <button class="btn btn-primary btn-sm float-right p-2" type="button"><i class="fa fa-arrow-circle-o-left"></i>&nbsp; Cancelar</button>
+                </a>
+                {% endblock formBody %}
+        </form>
+    </div>
+</div>
+</div>
+<script>
+</script>

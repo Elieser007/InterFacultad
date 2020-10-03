@@ -1,0 +1,7 @@
+.content{
+    overflow: scroll;
+    height: 100vh;
+}
+.content-wrapper{
+    overflow-y: auto;
+}

@@ -1,0 +1,21 @@
+{% extends 'Administracion/Registro/universidad/form_universidad.html' %}
+{% block formTitle %}
+Eliminar Universidad
+{% endblock formTitle %}
+
+{% block formAction %}
+{% url 'administracion:registro:eliminar_universidad' object.id %}
+{% endblock formAction %}
+
+{% block formBody %}
+<div class="card-header" style="text-align: center; font-size: 2.5em;">
+    <i class="fa fa-trash"></i>
+  <h3> ¿Desea Eliminar la Universidad?</h3>
+  <h3> {{object.nombre_corto}}</h3>
+</div>
+<div class="card-body" style="text-align: center;">
+  <button type="submit" class="btn btn-primary">Eliminar</button>
+  <a href="" class="btn btn-primary"
+    >Cancelar</a>
+</div>
+{% endblock formBody %}

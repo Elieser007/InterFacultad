@@ -1,0 +1,95 @@
+{% extends 'Administracion/administracion.html' %}
+{% load static %}
+{% block title %}Registro{% endblock title %}  
+
+{% block headType %}
+    position:inherit;
+{% endblock headType %}
+       
+{% block links %}
+<li><a href="{% url 'administracion' %}" class="nav-link text-white lnk">Inicio</a></li>
+<li class="active"><a href="{% url 'administracion:registro' %}" class="nav-link lnk">Administrar Datos</a></li>
+<li><a href="" class="nav-link text-white lnk">Eventos</a></li>
+<li><a href="" class="nav-link text-white lnk">Blog</a></li>
+<li><a href="" class="nav-link text-white lnk">Noticias</a></li>
+{% endblock links %}
+
+{% block content %}
+
+<div class="container site-section">
+    <div class="row">
+
+        <div class="col-sm-6 col-lg-3 pb-1 pl-1 pr-1">
+            <a href="{% url 'administracion:registro:universidad' %}">
+            <div class="card text-white bg-primary">
+            <div class="card-body">
+                <div class="card-left pt-1 float-left">
+                    <h3 class="mb-0 fw-r">
+                        <span class="count">1</span>
+                    </h3>
+                    <p class="text-light mt-1 m-0">Universidad</p>
+                </div><!-- /.card-left -->
+                
+                <div class="card-right float-right text-right">
+                    <i class="fa fa-university" style="font-size: 4em;"></i>
+                </div><!-- /.card-right -->
+                
+            </div>
+            
+        </div>
+    </a>
+</div>
+    <div class="col-sm-6 col-lg-3 pb-1 pl-1 pr-1">
+        <a href="{% url 'administracion:registro:facultad' %}">
+            <div class="card text-white bg-primary">
+            <div class="card-body">
+                <div class="card-left pt-1 float-left">
+                    <h3 class="mb-0 fw-r">
+                        <span class="count">5</span>
+                    </h3>
+                    <p class="text-light mt-1 m-0">Facultad</p>
+                </div><!-- /.card-left -->
+                
+                <div class="card-right float-right text-right">
+                    <i class="fa fa-graduation-cap" style="font-size: 4em;"></i>
+                </div><!-- /.card-right -->
+                
+            </div>
+            
+        </div>
+    </a>
+</div>
+    <div class="col-sm-6 col-lg-3 pb-1 pl-1 pr-1">
+        <a href="">
+            <div class="card text-white bg-primary">
+            <div class="card-body">
+                <div class="card-left pt-1 float-left">
+                    <h3 class="mb-0 fw-r">
+                        <span class="count">5</span>
+                    </h3>
+                    <p class="text-light mt-1 m-0">Carrera</p>
+                </div><!-- /.card-left -->
+                
+                <div class="card-right float-right text-right">
+                    <i class="fa fa-graduation-cap" style="font-size: 4em;"></i>
+                </div><!-- /.card-right -->
+                
+            </div>
+            
+        </div>
+    </a>
+</div>
+</div>
+
+</div>
+    
+{% endblock content %}
+
+{% block btn-login %}
+{% if user %}
+<a href="{% url 'logout' %}" class="btn btn-primary py-3 px-4 mr-3 lnk">Cerrar Sesión</a>
+{% endif %}
+    
+{% endblock btn-login %}
+    
+    
