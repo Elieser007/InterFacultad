@@ -62,8 +62,8 @@ class DeporteFemeninoAdmin(admin.ModelAdmin):
     resource_class = DeporteFemeninoResource
 
 class DeporteAdmin(admin.ModelAdmin):
-    # search_fields = ['alumno']
-    list_display = ('id','alumno','masculino','femenino')
+    search_fields = ['id','alumno','masculino','femenino']
+    list_display = ('id','alumno','masculino','femenino',)
     resource_class = DeporteFemeninoResource
 
 
