@@ -32,10 +32,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
+    'Apps.Usuario',
     'Apps.Pagina',
     'Apps.Login',
     'Apps.Administracion',
     'Apps.Registro',
+    'Apps.Blog',
     'pwa',
 ]
 
@@ -89,6 +92,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL='Usuario.Usuario'
+
 JAZZMIN_SETTINGS = {
     # title of the window
     'site_title': 'InterFacultad',
@@ -109,7 +114,7 @@ JAZZMIN_SETTINGS = {
     # 'search_model': 'auth.User',
 
     # Field name on user model that contains avatar image
-    'user_avatar': None,
+    'user_avatar': 'auth.User.foto',
 
     ############
     # Top Menu #
@@ -125,7 +130,7 @@ JAZZMIN_SETTINGS = {
         {'name': 'InterFacultad', 'url': 'inicio', 'new_window': False},
 
         # model admin to link to (Permissions checked against model)
-        # {'model': 'auth.User'},
+        {'model': 'auth.User'},
 
         # App with dropdown menu to all its models pages (Permissions checked against models)
         {'app': 'Interfacultad'},
@@ -182,6 +187,9 @@ JAZZMIN_SETTINGS = {
         'Registro.Facultad' : 'fas fa-hotel',
         'Registro.DeporteMasculino' : 'fas fa-male',
         'Registro.DeporteFemenino' : 'fas fa-female',
+        'Blog.Post' : 'fas fa-list-alt',
+        'Blog.Categoria' : 'fas fa-layer-group',
+        'Usuario.Usuario' : 'fas fa-user',
     },
     # Icons that are used when one is not manually specified
     'default_icon_parents': 'fas fa-chevron-circle-right',
@@ -212,8 +220,71 @@ JAZZMIN_SETTINGS = {
     "language_chooser": False,
 }
 
+# CkEditor config
+CKEDITOR_CONFIGS = {
+    'default': {
+        # 'skin': 'moono',
+        # 'skin': 'office2013',
+        'toolbar_Basic': [
+            ['Source', '-', 'Bold', 'Italic']
+        ],
+        'toolbar_YourCustomToolbarConfig': [
+            {'name': 'document', 'items': ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates']},
+            {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
+            {'name': 'editing', 'items': ['Find', 'Replace', '-', 'SelectAll']},
+            {'name': 'forms',
+             'items': ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton',
+                       'HiddenField']},
+            '/',
+            {'name': 'basicstyles',
+             'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
+            {'name': 'paragraph',
+             'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-',
+                       'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl',
+                       'Language']},
+            {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
+            {'name': 'insert',
+             'items': ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']},
+            '/',
+            {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
+            {'name': 'colors', 'items': ['TextColor', 'BGColor']},
+            {'name': 'tools', 'items': ['Maximize', 'ShowBlocks']},
+            {'name': 'about', 'items': ['About']},
+            '/',  # put this to force next toolbar on new line
+            {'name': 'yourcustomtools', 'items': [
+                # put the name of your editor.ui.addButton here
+                'Preview',
+                'Maximize',
 
-
+            ]},
+        ],
+        'toolbar': 'YourCustomToolbarConfig',  # put selected toolbar config here
+        # 'toolbarGroups': [{ 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ] }],
+        'height': 291,
+        'width': '100%',
+        # 'filebrowserWindowHeight': 725,
+        # 'filebrowserWindowWidth': 940,
+        # 'toolbarCanCollapse': True,
+        'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
+        'tabSpaces': 4,
+        'extraPlugins': ','.join([
+            'uploadimage', # the upload image feature
+            # your extra plugins here
+            'div',
+            'autolink',
+            'autoembed',
+            'embedsemantic',
+            'autogrow',
+            # 'devtools',
+            'widget',
+            'lineutils',
+            'clipboard',
+            'dialog',
+            'dialogui',
+            'elementspath'
+        ]),
+    }
+}
 
 
 # Services worker
@@ -253,3 +324,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS=[os.path.join(BASE_DIR, 'Static')]
+# STATIC_ROOT = os.path.join(BASE_DIR, 'Static')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'Media')

@@ -3,4 +3,4 @@
 
 data="production"
 # data="local"
-# data="localremote"pip install gunicorn
+# data="localremote"

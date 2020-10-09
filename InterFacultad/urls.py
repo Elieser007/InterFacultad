@@ -17,10 +17,15 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
+
+from django.contrib.staticfiles.urls import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 # from Apps.Registro.views import Registro
 from Apps.Administracion.views import Administracion
 from Apps.Login.views import Login, logout
 
+from . import base
 urlpatterns = [
     path('accounts/', admin.site.urls, name='login'),
     path('', include('Apps.Pagina.urls')),
@@ -30,4 +35,6 @@ urlpatterns = [
     # path('logout/', login_required(logout), name='logout'),
     path('', include('pwa.urls')),
 ]
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(base.MEDIA_URL, document_root=base.MEDIA_ROOT)
 

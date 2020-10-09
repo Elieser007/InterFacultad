@@ -17,8 +17,34 @@
 <div class="row align-items-center">
   <div class="col-lg-5 mx-auto text-center">
     <h1 class="text-white">Blog Posts</h1>
-    <p>Vea los posts publicados en forma de información .</p>
-  </div>
+    <p>Busqué Publicaciones e Informesé.</p>
+    {% block barra_busqueda %}              
+      <div class="row">
+        <div class="col-md-12 search mt-3">
+          <form method="get">
+            <div id="custom-search-input">
+              <div class="imput-group col-md-12">
+                <input type="search" class="form-control" placeholder="Buscar..." name="buscar" value="{{ request.GET.buscar }}">
+                <span class="input-group-list">
+                  <button type="submit" class="btn btn-primary mt-2 col-md-4" style="border-radius: 0.25rem;">Buscar</button>
+                </span>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      {% endblock barra_busqueda %}
+    </div>
+                              <div class="row align-items-center mx-auto col-lg-6 col-sm-12">
+                                <h2 class="text-white text-center col-12">Categorias</h2>
+                                <a href="" class="btn btn-primary mt-2 col-md-4 p-2">Jugadores</a>
+                                <a href="" class="btn btn-primary mt-2 col-md-4 p-2">Jugadoras</a>
+                                <a href="" class="btn btn-primary mt-2 col-md-4 p-2">Top 20</a>
+                                <a href="" class="btn btn-primary mt-2 col-md-4 p-2">Juegos</a>
+                                <a href="" class="btn btn-primary mt-2 col-md-4 p-2">Información</a>
+                                <a href="" class="btn btn-primary mt-2 col-md-4 p-2">Experiencias</a>
+                              </div>
+  
 </div>
 {% endblock texto_principal %}
 
@@ -33,99 +59,47 @@
           <h2 class="heading">Ültimos Blogs</h2>
         </div>
       </div>
-      <div class="row">
+      <div class="row align-items-center">
+        {% if posts %}
+        {% for post in posts %}
         <div class="col-lg-4 mb-4">
           <div class="custom-media d-block">
             <div class="img mb-4">
-              <a href="single.html"><img src="{% static 'images/img_1.jpg' %}" alt="Image" class="img-fluid"></a>
+              <a href="{% url 'post' post.slug %}"><img src={{post.miniatura}} alt="Image" class="img-fluid"></a>
             </div>
             <div class="text">
-              <span class="meta">May 20, 2020</span>
-              <h3 class="mb-4"><a href="#">Romolu to stay at Real Nadrid?</a></h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus deserunt saepe tempora dolorem.</p>
-              <p><a href="#">Leer Más</a></p>
+              <span class="meta">{{post.fecha_creacion}}</span>
+              <h3 class="mb-4"><a href="{% url 'post' post.slug %}">{{ post.titulo }}</a></h3>
+              <p>{{ post.descripcion }}</p>
+              <p><a href="{% url 'post' post.slug %}">Leer Más</a></p>
             </div>
           </div>
         </div>
-        <div class="col-lg-4 mb-4">
-          <div class="custom-media d-block">
-            <div class="img mb-4">
-              <a href="single.html"><img src="{% static 'images/img_3.jpg' %}" alt="Image" class="img-fluid"></a>
-            </div>
-            <div class="text">
-              <span class="meta">May 20, 2020</span>
-              <h3 class="mb-4"><a href="#">Romolu to stay at Real Nadrid?</a></h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus deserunt saepe tempora dolorem.</p>
-              <p><a href="#">Leer Más</a></p>
-            </div>
-          </div>
-        </div>
+      {% endfor %}
+      {% else %}
+        <h2 class="post-title">
+          No Existen posts Registrados
+        </h2>
+      {% endif %}
+<div class="row">
+</div>
 
-        <div class="col-lg-4 mb-4">
-          <div class="custom-media d-block">
-            <div class="img mb-4">
-              <a href="single.html"><img src="{% static 'images/img_1.jpg' %}" alt="Image" class="img-fluid"></a>
-            </div>
-            <div class="text">
-              <span class="meta">May 20, 2020</span>
-              <h3 class="mb-4"><a href="#">Romolu to stay at Real Nadrid?</a></h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus deserunt saepe tempora dolorem.</p>
-              <p><a href="#">Leer Más</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 mb-4">
-          <div class="custom-media d-block">
-            <div class="img mb-4">
-              <a href="single.html"><img src="{% static 'images/img_3.jpg' %}" alt="Image" class="img-fluid"></a>
-            </div>
-            <div class="text">
-              <span class="meta">May 20, 2020</span>
-              <h3 class="mb-4"><a href="#">Romolu to stay at Real Nadrid?</a></h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus deserunt saepe tempora dolorem.</p>
-              <p><a href="#">Leer Más</a></p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-lg-4 mb-4">
-          <div class="custom-media d-block">
-            <div class="img mb-4">
-              <a href="single.html"><img src="{% static 'images/img_1.jpg' %}" alt="Image" class="img-fluid"></a>
-            </div>
-            <div class="text">
-              <span class="meta">May 20, 2020</span>
-              <h3 class="mb-4"><a href="#">Romolu to stay at Real Nadrid?</a></h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus deserunt saepe tempora dolorem.</p>
-              <p><a href="#">Leer Más</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 mb-4">
-          <div class="custom-media d-block">
-            <div class="img mb-4">
-              <a href="single.html"><img src="{% static 'images/img_3.jpg' %}" alt="Image" class="img-fluid"></a>
-            </div>
-            <div class="text">
-              <span class="meta">May 20, 2020</span>
-              <h3 class="mb-4"><a href="#">Romolu to stay at Real Nadrid?</a></h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus deserunt saepe tempora dolorem.</p>
-              <p><a href="#">Leer Más</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row justify-content-center">
-        <div class="col-lg-7 text-center">
-          <div class="custom-pagination">
-            <a href="#">1</a>
-            <span>2</span>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-          </div>
-        </div>
+</div>
+  <div class="row justify-content-center">
+    <div class="col-lg-7 text-center">
+      <div class="custom-pagination">
+        {% if posts.has_previous %}
+        <a href="?page={{posts.previous_page_number}}
+        {% if request.GET.search %} &q={{ reques.GET.search}} {% endif %}"
+        class="btn btn-primary float-left"><i class="fas fa-angle-left"></i></a>
+        {% endif %}
+        <span>2</span>
+        {% if posts.has_next %}
+        <a href="?page={{posts.next_page_number}}
+        {% if request.GET.search %} &q={{ reques.GET.search}} {% endif %}"
+        class="btn btn-primary float-right"><i class="fas fa-angle-right"></i></a>
+        {% endif %}
       </div>
     </div>
+  </div>
     {% endblock body %}
